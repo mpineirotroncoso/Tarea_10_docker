@@ -1,31 +1,31 @@
-version: '3.1'
-services:
-  web:
-    image: odoo:17.0
-    restart: always
-    depends_on:
+version: '3.1' # version de docker compose
+services: # servicios
+  web: # servicio odoo
+    image: odoo:17.0 # imagen de odoo
+    restart: always # siempre reiniciar en caso de error
+    depends_on: # dependencias
       - db
-    ports:
+    ports: # puertos
       - "8069:8069"
-    environment:
-      - HOST=db
-      - USER=odoo
-      - PASSWORD=odoo
-  db:
-    image: postgres:15
-    ports:
+    environment: # variables de entorno
+      - HOST=db # host de la base de datos
+      - USER=odoo # usuario de la base de datos
+      - PASSWORD=odoo # contraseña de la base de datos
+  db: # servicio de base de datos
+    image: postgres:15 # imagen de postgres
+    ports: # puertos
       - "5432:5432"
-    environment:
+    environment: # variables de entorno
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-  pgadmin:
-    image: dpage/pgadmin4
-    restart: always
-    ports:
+  pgadmin: # servicio de pgadmin
+    image: dpage/pgadmin4 # imagen de pgadmin
+    restart: always # siempre reiniciar en caso de error
+    ports: # puertos
       - "8080:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: marcos@dam.com
-      PGADMIN_DEFAULT_PASSWORD: 1234
-    depends_on:
+    environment: # variables de entorno
+      PGADMIN_DEFAULT_EMAIL: marcos@dam.com # email de pgadmin
+      PGADMIN_DEFAULT_PASSWORD: 1234 # contraseña de pgadmin
+    depends_on: # dependencias
       - db
