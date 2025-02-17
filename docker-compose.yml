@@ -7,6 +7,10 @@ services: # servicios
       - db
     ports: # puertos
       - "8069:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
     environment: # variables de entorno
       - HOST=db # host de la base de datos
       - USER=odoo # usuario de la base de datos
@@ -29,3 +33,5 @@ services: # servicios
       PGADMIN_DEFAULT_PASSWORD: 1234 # contraseña de pgadmin
     depends_on: # dependencias
       - db
+volumes:
+  odoo-web-data:
